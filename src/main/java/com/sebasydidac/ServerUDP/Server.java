@@ -7,6 +7,9 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author sebas & didac
+ */
 public class Server {
     public static void main(String[] args) {
         int port = 7777;
@@ -25,22 +28,25 @@ public class Server {
                     String msg = new String(packet.getData()).trim();
                     String address = packet.getAddress().getHostAddress();
                     System.out.printf("El cliente:[%s] envió [%s]\n",address,msg);
-                    String[] msgCutted = msg.split(" ");
+                    String[] msgSplit = msg.split(" ");
                     String response;
-                    switch (msgCutted[0]){
+                    switch (msgSplit[0]){
                         case "CREAR":
-                            if(!existePuerto(msgCutted[1], cola)){
-                                cola.add(String.format("%s::%s",address,msgCutted[1]));
-                                response = "ADDED";
+                            if(!existePuerto(msgSplit[1], cola)){
+                                cola.add(String.format("%s::%s",address,msgSplit[1]));
+                                response = "ADDED::NULL";
                             }else{
-                                response = "OCCUPIED";
+                                response = "OCCUPIED::NULL";
                             }
                             break;
                         case "UNIRME":
-                            response = cola.isEmpty()?"EMPTY":cola.removeFirst();
+                            response = cola.isEmpty()?"EMPTY::NULL":cola.removeFirst();
+                            break;
+                        case "SALIR":
+                            response = "SALIR::NULL";
                             break;
                         default:
-                            response = "ERROR";
+                            response = "ERROR::NULL";
                             break;
                     }
                     byte[] bytesOUT = response.getBytes();
