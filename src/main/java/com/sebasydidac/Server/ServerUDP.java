@@ -1,4 +1,4 @@
-package com.sebasydidac.ServerUDP;
+package com.sebasydidac.Server;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author sebas & didac
  */
-public class Server {
+public class ServerUDP {
     public static void main(String[] args) {
         int port = 7777;
         DatagramSocket socket;
@@ -32,20 +32,27 @@ public class Server {
                     String response;
                     switch (msgSplit[0]){
                         case "CREAR":
+                            //Devuelve added::null si se añade a la lista la ip::puerto
+                            //Si ese puerto no esta ocupado
                             if(!existePuerto(msgSplit[1], cola)){
                                 cola.add(String.format("%s::%s",address,msgSplit[1]));
                                 response = "ADDED::NULL";
                             }else{
+                                //devuelve occupied si ya existe ese puerto en la lista
                                 response = "OCCUPIED::NULL";
                             }
                             break;
                         case "UNIRME":
+                            //devuelve empty::null si no hay juegos
+                            //y devuelve ip::puerto si hay juegos
                             response = cola.isEmpty()?"EMPTY::NULL":cola.removeFirst();
                             break;
                         case "SALIR":
+                            //Devuelve salir para que cliente salga
                             response = "SALIR::NULL";
                             break;
                         default:
+                            //Si se produce un error inesperado
                             response = "ERROR::NULL";
                             break;
                     }
