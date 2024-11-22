@@ -14,14 +14,19 @@ class ServerTCP {
         ServerSocket server = null;
         try {
             server = new ServerSocket(7778);
-            while (true) {
-                // Esperem que es connecti un client
-                System.out.println("Esperant nou client...");
-                Socket connexio = server.accept();
-                System.out.println("Client " + connexio.getInetAddress().getHostAddress() + " connectat.");
-                new FilClient(connexio).start();
+            // Esperem que es connecti un client
+            System.out.println("Esperant nou client...");
+            /*
+            Juego j = new Juego();
+            msg = "JUGO 3 4"
+            enviar a clienteTCP JUGO 3 4
 
-            }
+            cliente (j2.jugada(3,4) = "TOCAT"/"AIGUA"/"ERROR"
+             */
+            Socket connexio = server.accept();
+            System.out.println("Client " + connexio.getInetAddress().getHostAddress() + " connectat.");
+            new FilClient(connexio).start();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

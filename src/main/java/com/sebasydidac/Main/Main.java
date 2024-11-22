@@ -1,8 +1,5 @@
 package com.sebasydidac.Main;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.sebasydidac.Logica.Tablero;
 
 public class Main {
     public static void main(String[] args) {

@@ -11,7 +11,7 @@ class ClientTCP {
     public static void main(String[] args) {
         ServerSocket server = null;
         try {
-            server = new ServerSocket(7778);
+            server = new ServerSocket(7871);
             while (true) {
                 // Esperem que es connecti un client
                 System.out.println("Esperant nou client...");
