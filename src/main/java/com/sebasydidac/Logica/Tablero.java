@@ -43,6 +43,27 @@ public class Tablero {
             barcos[i] = new Barco(posiciones, tipos[i]);  // Usa el constructor con parámetros
         }
     }
+    public String atacar(String x, String y){
+        String msg = "AGUA";
+        for(int i = 0; i < barcos.length; i++){
+            if(barcos[i].isTocado(x,y)){
+                if(barcos[i].isHundido()){
+                    borrarBarco(barcos[i]);
+                    msg ="HUNDIDO";
+                }else{
+                    msg="TOCADO";
+                }
+            }
+        }
+        return msg;
+    }
+    public void borrarBarco(Barco b){
+        var pos = b.getPosiciones();
+        for(int i = 0; i < pos.length; i++){
+            var posXY = pos[i].split(";");
+            tablero[Integer.parseInt(posXY[0])][Integer.parseInt(posXY[1])] = " ";
+        }
+    }
 
 
     private boolean colocarBarco(int x, int y, int tamano, boolean horizontal) {

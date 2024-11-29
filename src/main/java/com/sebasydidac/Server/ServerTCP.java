@@ -21,7 +21,7 @@ class ServerTCP {
             msg = "JUGO 3 4"
             enviar a clienteTCP JUGO 3 4
 
-            cliente (j2.jugada(3,4) = "TOCAT"/"AIGUA"/"ERROR"
+            cliente (j2.jugada(3,4) = "TOCADO"/"AGUA"/"ERROR/"HUNDIDO"
              */
             Socket connexio = server.accept();
             System.out.println("Client " + connexio.getInetAddress().getHostAddress() + " connectat.");
